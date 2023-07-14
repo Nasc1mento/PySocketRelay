@@ -8,7 +8,7 @@ class Server:
         self.__port: int = port
         self.__socket: socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.__socket.bind((self.__host, self.__port))
-        self.__socket.listen()
+        self.__socket.listen(100)
 
     @staticmethod
     def receive(sock: socket) -> str:
