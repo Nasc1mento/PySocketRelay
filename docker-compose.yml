@@ -1,0 +1,19 @@
+version: '3'
+services:
+  container1:
+    image: python
+    build:
+      context: ./models/client/
+      dockerfile: Dockerfile
+    networks:
+        - network_simulator
+  container2:
+    image: python
+    build:
+      context: ./models/server/
+      dockerfile: Dockerfile
+    networks:
+      - network_simulator
+networks:
+    network_simulator:
+        driver: bridge
