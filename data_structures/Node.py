@@ -1,7 +1,10 @@
+from models.Client import Client
+
+
 class Node:
 
-    def __init__(self, key, neighbor1=None, neighbor2=None):
-        self.__key = key
+    def __init__(self, key: Client, neighbor1=None, neighbor2=None):
+        self.__key: Client = key
         self.__neighbor1: Node = neighbor1
         self.__neighbor2: Node = neighbor2
 

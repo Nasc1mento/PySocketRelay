@@ -1,12 +1,11 @@
-import threading
+from models import Tracker, Client
 
-from simulators.server import ServerSimulator
-from simulators.client import ClientSimulator
-
-
-threading.Thread(target=ServerSimulator.start).start()
-# client
-threading.Thread(target=ClientSimulator.start).start()
+(host, port) = ('localhost', 6067)
+tracker: Tracker = Tracker.Tracker(host, port)
+client: Client = Client.Client('localhost', 7007)
+tracker.add_client(client)
+for c in tracker.get_clients():
+    print(c.get_key())
 
 
 
