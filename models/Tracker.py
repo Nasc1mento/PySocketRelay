@@ -13,8 +13,11 @@ class Tracker:
         self.__socket.listen()
         self.__clients: Graph = Graph.Graph()
 
-    def add_client(self, client: Client) -> None:
+    def add_client(self, client: Client) -> Client:
         return self.__clients.add_node(client).get_key()
+
+    def pair_clients(self, client1: Client, client2: Client) -> None:
+        return self.__clients.add_edge(client1, client2)
 
     def get_clients(self) -> list:
         return self.__clients.get_nodes()
