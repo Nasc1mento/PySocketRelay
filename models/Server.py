@@ -9,14 +9,14 @@ class Server:
         self.__socket.bind((self.__host, self.__port))
         self.__socket.listen(100)
 
-    def get_socket(self):
+    def get_socket(self) -> socket:
         return self.__socket
 
-    def get_host(self):
+    def get_host(self) -> str:
         return self.__host
 
-    def get_port(self):
+    def get_port(self) -> int:
         return self.__port
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Server(host={self.__host}, port={self.__port})"

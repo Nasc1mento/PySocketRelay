@@ -4,13 +4,13 @@ from models.Server import Server
 from models.Peer import Peer
 sys.path.append('../../models/')
 
-server = Server('0.0.0.0', 8098)
-client = Client('0.0.0.0', 8099)
-peer = Peer(server, client)
+server: Server = Server('0.0.0.0', 8098)
+client: Client = Client('0.0.0.0', 8099)
+peer: Peer = Peer(server, client)
 
 while True:
-    msg = input('message: ')
-    peer.get_client().send(msg.encode())
+    msg: str = input('message: ')
+    peer.get_client().get_socket().send(msg.encode())
 
 
 

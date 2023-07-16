@@ -8,20 +8,20 @@ class Peer:
         self.__client = client
         self.__relay = relay
 
-    def get_server(self):
+    def get_server(self) -> Server:
         return self.__server
 
-    def get_client(self):
+    def get_client(self) -> Client:
         return self.__client
 
-    def set_server(self, server: Server):
+    def set_server(self, server: Server) -> None:
         self.__server = server
 
-    def set_client(self, client: Client):
+    def set_client(self, client: Client) -> None:
         self.__client = client
 
-    def is_relay(self):
+    def is_relay(self) -> bool:
         return self.__relay
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Peer(server={self.__server}, client={self.__client})"

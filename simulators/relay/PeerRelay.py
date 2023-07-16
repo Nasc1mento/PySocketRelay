@@ -6,9 +6,9 @@ from models.Server import Server
 from models.Peer import Peer
 sys.path.append('../../models/')
 
-server = Server('0.0.0.0', 8098)
-client = Client('0.0.0.0', 8099)
-peer = Peer(server, client)
+server: Server = Server('0.0.0.0', 8098)
+client: Client = Client('0.0.0.0', 8099)
+peer: Peer = Peer(server, client)
 
 
 def relay(sock_peer: socket, address: tuple):
@@ -18,11 +18,11 @@ def relay(sock_peer: socket, address: tuple):
             break
         print(f'msg: {msg} addr: {address}')
         if peer.is_relay():
-            peer.get_client().send(msg.encode())
+            peer.get_client().get_socket().send(msg.encode())
 
 
 while True:
-    [sock, addr] = peer.get_server().accept()
+    [sock, addr] = peer.get_server().get_socket().accept()
     threading.Thread(target=relay, args=(sock, addr,)).start()
 
 

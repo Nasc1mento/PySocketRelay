@@ -8,14 +8,14 @@ class Client:
         self.__socket: socket = socket.socket()
         self.__socket.connect((self.__host, self.__port))
 
-    def get_socket(self):
+    def get_socket(self) -> socket:
         return self.__socket
 
-    def get_host(self):
+    def get_host(self) -> str:
         return self.__host
 
-    def get_port(self):
+    def get_port(self) -> int:
         return self.__port
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Client(host={self.__host}, port={self.__port})"
