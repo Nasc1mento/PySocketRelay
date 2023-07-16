@@ -1,24 +1,31 @@
+import socket
 import sys
-from models.Client import Client
+import threading
+import time
+
 from models.Server import Server
 from models.Peer import Peer
 sys.path.append('../../models/')
 
-server: Server = Server('0.0.0.0', 8072)
-client: Client = Client('0.0.0.0', 8098)
-peer: Peer = Peer(server, client)
+server: Server = Server('0.0.0.0', 8074)
+peer: Peer = Peer(server)
+
+
+def send(sock_peer: socket, address: tuple):
+    print(f'connected to {address}')
+    threading.Thread(target=send_aux, args=(sock_peer, address,)).start()
+
+
+def send_aux(sock_peer: socket, address: tuple):
+    while True:
+        msg: str = f'ola do root{address}'
+        sock_peer.send(msg.encode())
+        time.sleep(5)
+
 
 while True:
-    msg: str = input('message: ')
-    peer.get_client().get_socket().send(msg.encode())
-
-
-
-
-
-
-
-
+    [sock, addr] = peer.get_server().get_socket().accept()
+    threading.Thread(target=send, args=(sock, addr,)).start()
 
 
 
