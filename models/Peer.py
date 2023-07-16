@@ -3,15 +3,25 @@ from models.Server import Server
 
 
 class Peer:
-    def __init__(self, server: Server, client: Client = None, root=False):
+    def __init__(self, server: Server = None, client: Client = None, relay=True):
         self.__server = server
         self.__client = client
-        self.__root = root
+        self.__relay = relay
 
-    def send(self, message: str) -> None:
-        return self.__client.get_socket().send(message.encode())
+    def get_server(self):
+        return self.__server
 
-    def receive(self):
-        [sock, address] = self.__server.get_socket().accept()
-        return sock.recv(1024)
+    def get_client(self):
+        return self.__client
 
+    def set_server(self, server: Server):
+        self.__server = server
+
+    def set_client(self, client: Client):
+        self.__client = client
+
+    def is_relay(self):
+        return self.__relay
+
+    def __str__(self):
+        return f"Peer(server={self.__server}, client={self.__client})"

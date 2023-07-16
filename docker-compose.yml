@@ -3,14 +3,14 @@ services:
   container1:
     image: python
     build:
-      context: simulators/server/
+      context: simulators/root/
       dockerfile: Dockerfile
     networks:
         - network_simulator
   container2:
     image: python
     build:
-      context: simulators/client/
+      context: simulators/relay/
       dockerfile: Dockerfile
     networks:
       - network_simulator

@@ -11,4 +11,11 @@ class Client:
     def get_socket(self):
         return self.__socket
 
+    def get_host(self):
+        return self.__host
 
+    def get_port(self):
+        return self.__port
+
+    def __str__(self):
+        return f"Client(host={self.__host}, port={self.__port})"
