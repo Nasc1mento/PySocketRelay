@@ -4,8 +4,8 @@ from models.Server import Server
 from models.Peer import Peer
 sys.path.append('../../models/')
 
-server: Server = Server('0.0.0.0', 8098)
-client: Client = Client('0.0.0.0', 8099)
+server: Server = Server('0.0.0.0', 8072)
+client: Client = Client('0.0.0.0', 8098)
 peer: Peer = Peer(server, client)
 
 while True:

@@ -7,8 +7,8 @@ from models.Peer import Peer
 sys.path.append('../../models/')
 
 server: Server = Server('0.0.0.0', 8098)
-client: Client = Client('0.0.0.0', 8099)
-peer: Peer = Peer(server, client)
+# client: Client = Client('0.0.0.0', 8099)
+peer: Peer = Peer(server, None, False)
 
 
 def relay(sock_peer: socket, address: tuple):
