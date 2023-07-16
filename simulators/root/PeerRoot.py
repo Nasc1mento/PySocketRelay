@@ -1,11 +1,8 @@
 import socket
-import sys
 import threading
 import time
-
 from models.Server import Server
 from models.Peer import Peer
-sys.path.append('../../models/')
 
 server: Server = Server('0.0.0.0', 8074)
 peer: Peer = Peer(server)
@@ -26,7 +23,3 @@ def send_aux(sock_peer: socket, address: tuple):
 while True:
     [sock, addr] = peer.get_server().get_socket().accept()
     threading.Thread(target=send, args=(sock, addr,)).start()
-
-
-
-

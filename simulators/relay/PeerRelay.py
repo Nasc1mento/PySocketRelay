@@ -1,10 +1,8 @@
-import sys
 import threading
 import socket
 from models.Client import Client
 from models.Server import Server
 from models.Peer import Peer
-sys.path.append('../../models/')
 
 server: Server = Server('0.0.0.0', 8098)
 client: Client = Client('0.0.0.0', 8074)
@@ -29,16 +27,3 @@ def send(sock_peer: socket, address: tuple, msg: str):
 
 while True:
     relay()
-
-
-
-
-
-
-
-
-
-
-
-
-
