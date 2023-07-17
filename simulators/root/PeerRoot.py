@@ -10,10 +10,6 @@ peer: Peer = Peer(server)
 
 def send(sock_peer: socket, address: tuple):
     print(f'connected to {address}')
-    threading.Thread(target=send_aux, args=(sock_peer, address,)).start()
-
-
-def send_aux(sock_peer: socket, address: tuple):
     while True:
         msg: str = f'ola do root{address}'
         sock_peer.send(msg.encode())
