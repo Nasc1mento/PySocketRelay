@@ -1,6 +1,7 @@
 import socket
 from data_structures import Graph
-from models.Client import Client
+from data_structures.Edge import Edge
+from models.Peer import Peer
 
 
 class Tracker:
@@ -11,13 +12,16 @@ class Tracker:
         self.__socket: socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.__socket.bind((self.__host, self.__port))
         self.__socket.listen()
-        self.__clients: Graph = Graph.Graph()
+        self.__peers: Graph = Graph.Graph()
 
-    def add_client(self, client: Client) -> Client:
-        return self.__clients.add_node(client).get_key()
+    def add_peer(self, peer: Peer) -> Peer:
+        return self.__peers.add_node(peer).get_key()
 
-    def pair_clients(self, client1: Client, client2: Client) -> None:
-        return self.__clients.add_edge(client1, client2)
+    def pair_clients(self, peer1: Peer, peer2: Peer) -> Edge:
+        return self.__peers.add_edge(peer1, peer2)
 
     def get_clients(self) -> list:
-        return self.__clients.get_nodes()
+        return self.__peers.get_nodes()
+
+    def close(self) -> None:
+        self.__socket.close()

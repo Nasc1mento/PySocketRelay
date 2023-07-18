@@ -12,7 +12,7 @@ class Graph:
     def get_nodes(self) -> list[Node]:
         return list(self.__nodes.values())
 
-    def get_node(self, key) -> Node | None:
+    def get_node(self, key) -> Node:
         return self.__nodes.get(key)
 
     def add_node(self, key) -> Node:
@@ -20,8 +20,9 @@ class Graph:
         self.__nodes[key] = node
         return node
 
-    def remove_node(self, key) -> Node | None:
-        pass
+    def remove_node(self, key) -> Node:
+        node: Node = self.__nodes.pop(key)
+        return node
 
     def add_edge(self, source, destination) -> Edge | None:
         if source not in self.__nodes:
@@ -38,7 +39,7 @@ class Graph:
             return
 
         self.__edges[edge] = edge
-        self.__nodes[source].add_neighbor(self.__nodes[destination])
+        self.__nodes[source].add_neighbor(self.__nodes[destination].get_key())
         return edge
 
     def remove_edge(self, source, destination) -> Edge | None:
@@ -53,7 +54,7 @@ class Graph:
             return
 
         self.__edges.pop(edge)
-        self.__nodes[source].remove_neighbor(self.__nodes[destination])
+        self.__nodes[source].remove_neighbor(self.__nodes[destination].get_key())
         return edge
 
     def get_edges(self) -> list[Edge]:

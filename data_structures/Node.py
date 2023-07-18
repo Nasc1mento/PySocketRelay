@@ -1,33 +1,33 @@
-from models.Client import Client
+from models.Client import Peer
 
 
 class Node:
 
-    def __init__(self, key: Client, neighbor1=None, neighbor2=None):
-        self.__key: Client = key
-        self.__neighbor1: Node = neighbor1
-        self.__neighbor2: Node = neighbor2
+    def __init__(self, peer: Peer):
+        self.__key: Peer = peer
+        self.__neighbors = []
 
     def get_key(self):
         return self.__key
 
-    def get_neighbors(self) -> list['Node']:
-        return [self.__neighbor1, self.__neighbor2]
+    def get_neighbors(self) -> list['Peer']:
+        return self.__neighbors
 
-    def add_neighbor(self, node) -> None:
-        if self.__neighbor1 is None:
-            self.__neighbor1 = node
-        elif self.__neighbor2 is None:
-            self.__neighbor2 = node
+    def add_neighbor(self, peer: Peer):
+        node: Node = Node(peer)
+        if len(self.__neighbors) == 2:
+            return None
+        self.__neighbors.append(node)
+        return node
 
-    def remove_neighbor(self, node) -> None:
-        if self.__neighbor1 == node:
-            self.__neighbor1 = None
-        elif self.__neighbor2 == node:
-            self.__neighbor2 = None
+    def remove_neighbor(self, peer: Peer) -> None:
+        self.__neighbors.remove(peer)
 
     def full(self) -> bool:
-        return self.__neighbor1 is not None and self.__neighbor2 is not None
+        return len(self.__neighbors) == 2
+
+    def __str__(self) -> str:
+        return f"Node(key={self.__key}, neighbors={self.__neighbors})"
 
     def __eq__(self, other: 'Node') -> bool:
         return self.__key == other.__key

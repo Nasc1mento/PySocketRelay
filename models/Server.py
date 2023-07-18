@@ -18,5 +18,8 @@ class Server:
     def get_port(self) -> int:
         return self.__port
 
+    def close(self) -> None:
+        self.__socket.close()
+
     def __str__(self) -> str:
         return f"Server(host={self.__host}, port={self.__port})"

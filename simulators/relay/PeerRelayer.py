@@ -6,7 +6,7 @@ from models.Peer import Peer
 
 server: Server = Server('0.0.0.0', 8098)
 client: Client = Client('0.0.0.0', 8074)
-peer: Peer = Peer(None, client, False)
+peer: Peer = Peer(None, client, True)
 
 
 def relay():
@@ -17,7 +17,8 @@ def relay():
         print(f'msg: {msg})')
         if peer.is_relay():
             [sock, addr] = server.get_socket().accept()
-            threading.Thread(target=send, args=(sock, addr, msg,)).start()
+            #threading?
+            send(sock, addr, msg,)
 
 
 def send(sock_peer: socket, address: tuple, msg: str):
@@ -26,4 +27,4 @@ def send(sock_peer: socket, address: tuple, msg: str):
 
 
 while True:
-    relay()
+    threading.Thread(target=relay).start()

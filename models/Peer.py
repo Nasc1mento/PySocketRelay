@@ -23,5 +23,10 @@ class Peer:
     def is_relay(self) -> bool:
         return self.__relay
 
+    def close(self) -> None:
+        self.__server.get_socket().close()
+        self.__client.get_socket().close()
+
     def __str__(self) -> str:
         return f"Peer(server={self.__server}, client={self.__client})"
+
