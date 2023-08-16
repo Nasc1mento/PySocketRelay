@@ -1,36 +1,39 @@
-from models.Client import Peer
+from models.Peer import Peer
 
 
 class Node:
 
-    def __init__(self, peer: Peer):
-        self.__key: Peer = peer
-        self.__neighbors = []
+    def __init__(self):
+        self.__next:Node = None
+        self.__prev:Node= None
+        self._peer:Node = None
 
-    def get_key(self):
-        return self.__key
 
-    def get_neighbors(self) -> list['Peer']:
-        return self.__neighbors
+    def set_next(self, next:'Node') -> None:
+        self.__next = next
 
-    def add_neighbor(self, peer: Peer):
-        node: Node = Node(peer)
-        if len(self.__neighbors) == 2:
-            return None
-        self.__neighbors.append(node)
-        return node
+    def get_next(self) -> 'Node':
+        return self.__next
+    
+    def set_prev(self, prev:'Node') -> None:
+        self.__prev = prev
 
-    def remove_neighbor(self, peer: Peer) -> None:
-        self.__neighbors.remove(peer)
+    def get_prev(self) -> 'Node':
+        return self.__prev
+    
 
-    def full(self) -> bool:
-        return len(self.__neighbors) == 2
+    def set_peer(self, peer:Peer) -> Peer:
+        self.__peer = peer
+
+    def get_peer(self) -> None:
+        return self.__peer
+        
 
     def __str__(self) -> str:
-        return f"Node(key={self.__key}, neighbors={self.__neighbors})"
+        return f"Node(key={self.__peer}"
 
     def __eq__(self, other: 'Node') -> bool:
-        return self.__key == other.__key
+        return self.__peer == other.__peer
 
     def __hash__(self) -> int:
-        return hash(self.__key)
+        return hash(self.__peer)
