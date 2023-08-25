@@ -3,8 +3,9 @@ import socket
 from models.Client import Client
 from models.Server import Server
 from models.Peer import Peer
+from models.Tracker import Tracker
 
-server: Server = Server('0.0.0.0', 8098)
+server: Server = Server('0.0.0.0', Tracker.get_random_port())
 client: Client = Client('0.0.0.0', 8074)
 peer: Peer = Peer(None, client, True)
 

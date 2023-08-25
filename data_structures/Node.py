@@ -4,10 +4,9 @@ from models.Peer import Peer
 class Node:
 
     def __init__(self):
-        self.__next:Node = None
-        self.__prev:Node= None
-        self._peer:Node = None
-
+        self.__next: Node = None
+        self.__prev: Node = None
+        self._peer: Node = None
 
     def set_next(self, next:'Node') -> None:
         self.__next = next
@@ -20,14 +19,12 @@ class Node:
 
     def get_prev(self) -> 'Node':
         return self.__prev
-    
 
     def set_peer(self, peer:Peer) -> Peer:
         self.__peer = peer
 
-    def get_peer(self) -> None:
+    def get_peer(self) -> Peer:
         return self.__peer
-        
 
     def __str__(self) -> str:
         return f"Node(key={self.__peer}"
