@@ -11,9 +11,14 @@ peer: Peer = Peer(server)
 def send(sock_peer: socket, address: tuple):
     print(f'connected to {address}')
     while True:
-        msg: str = f'ola do root{address}'
-        sock_peer.send(msg.encode())
-        time.sleep(5)
+        try:
+            msg: str = f'ola do root {address}'
+            sock_peer.send(msg.encode())
+            time.sleep(5)
+        except (ConnectionResetError, socket.error):
+            print(f'pipe broken with {address}')
+            break
+    sock_peer.close()
 
 
 while True:
