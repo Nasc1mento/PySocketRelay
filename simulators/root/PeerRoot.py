@@ -1,10 +1,15 @@
 import socket
 import threading
 import time
+
+from models.Client import Client
 from models.Server import Server
 from models.Peer import Peer
+from models.Tracker import Tracker
 
-server: Server = Server('0.0.0.0', 8074)
+
+server: Server = Server(Tracker.get_local_ip(), 8074)
+# client: Client = Client('192.168.0.121', 8666)
 peer: Peer = Peer(server)
 
 

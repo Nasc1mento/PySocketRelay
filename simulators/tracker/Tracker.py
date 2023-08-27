@@ -1,6 +1,6 @@
 from models.Tracker import Tracker
 
-tracker: Tracker = Tracker('0.0.0.0', 8666)
+tracker: Tracker = Tracker(Tracker.get_local_ip(), 8666)
 
 
 

@@ -5,8 +5,9 @@ from models.Server import Server
 from models.Peer import Peer
 from models.Tracker import Tracker
 
-server: Server = Server('0.0.0.0', Tracker.get_random_port())
-client: Client = Client('0.0.0.0', 8074)
+server: Server = Server(Tracker.get_local_ip(), Tracker.get_random_port())
+client: Client = Client(Tracker.get_local_ip(), 8074)
+
 peer: Peer = Peer(None, client, True)
 
 
