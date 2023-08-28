@@ -6,17 +6,17 @@ Message relayer using python socket API and Docker network
 temp: 
 ```
   cd simulators/tracker
-  export PYTHONPATH=../:$PYTHONPATH
+  export PYTHONPATH=../../:$PYTHONPATH
   python3 Tracker.py
 ```
 ```
   cd simulators/root
-  export PYTHONPATH=../:$PYTHONPATH
+  export PYTHONPATH=../../:$PYTHONPATH
   python3 PeerRoot.py
 ```
 ```
   cd simulators/relay
-  export PYTHONPATH=../:$PYTHONPATH
+  export PYTHONPATH=../../:$PYTHONPATH
   python3 PeerRelayer.py
 ```
 
