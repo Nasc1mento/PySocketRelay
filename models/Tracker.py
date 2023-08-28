@@ -1,5 +1,6 @@
 import socket
 import random
+from typing import Type
 
 from data_structures.List import List
 from models.Peer import Peer
@@ -16,8 +17,13 @@ class Tracker:
         self.__list = List
 
     def add(self, peer: Peer):
-        peer.close()
         self.__list.add(peer)
+
+    def get_list(self) -> Type[List]:
+        return self.__list
+
+    def get_server(self) -> socket:
+        return self.__socket
 
     def close(self) -> None:
         self.__socket.close()
