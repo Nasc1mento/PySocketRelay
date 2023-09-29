@@ -10,7 +10,7 @@ from models.Tracker import Tracker
 
 
 server: Server = Server(Tracker.get_local_ip(), 8074)
-client: Client = Client('192.168.0.121', 8666)
+client: Client = Client(Tracker.get_local_ip(), 8666)
 peer: Peer = Peer(server)
 
 identifier_server = server.get_socket().getsockname()

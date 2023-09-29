@@ -1,5 +1,4 @@
 import ast
-import pickle
 import socket
 import threading
 
@@ -29,9 +28,10 @@ def add(sock_peer: socket, address: tuple):
         peer.set_server(server_peer)
         peer.set_client(client)
 
+        tracker.add(peer)
+        peers = tracker.get_list()
 
-
-        print(f'peer: {peer}')
+        print(tracker.get_list())
 
     except (ConnectionResetError, socket.error):
         print(f'err')
