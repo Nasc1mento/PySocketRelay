@@ -26,7 +26,7 @@ temp:
 ![diagram](https://github.com/Nasc1mento/PySocketRelay/assets/88512599/e2be40b1-6bd8-48f6-8b4f-49d46a4b03e4)
 
 ### Tracker
-TODO
+* Receive a socket client, disconnect and add to peers' list. 'List' connect the peer to the server of last peer ont the list
 
 ### Docker Network
 TODO
